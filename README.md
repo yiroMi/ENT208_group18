@@ -1,5 +1,4 @@
-# ENT208_group18
-Team name：404 NOT TRASH
-	Project name：automatic waste classification system
-	Project description：
-Our project is an intelligent waste sorting device designed for communities, schools, and public spaces. It integrates three core functions—voice recognition, light-sensor control, and temperature monitoring—delivering low cost, easy deployment, and high practicality. It addresses the common challenges of waste sorting: "unclear classification, unwillingness to sort, and difficult management.
+# ENT208_group18_404 NOT TRASH
+## Project name：automatic waste classification system
+## Project description：
+Our project is an intelligent garbage classification device specifically designed for communities, schools and public areas. It integrates three core functions - **voice recognition and classification of garbage**, **detection of full overflow status of trash cans**, and **flame sensing warning**. It has the advantages of low cost, easy deployment and high practicality. It addresses common problems in garbage classification: "unclear classification, fire hazards and management difficulties".
