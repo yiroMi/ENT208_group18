@@ -93,7 +93,6 @@ The product is ready when:
 - [ ] Voice → lid response < 3 seconds
 - [ ] Overflow detection works reliably
 - [ ] Fire alarm triggers correctly
-- [ ] Tested with at least 5 users
 - [ ] At least 5 validation sessions are documented in the Validation Report
 - [ ] The Technical Documentation describes the architecture, stack choices, and data model
 - [ ] The physical prototype is fully assembled and can be demonstrated in person to any assessor
