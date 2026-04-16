@@ -16,14 +16,14 @@ flowchart TD
     STM32 -->|GPIO| Alarm[Buzzer + High-power LED]
     Alarm --> FireAlarm[local fire alarm]
 
-    STM32 -->|GPIO| RedLEDs[Red LEDs (4)]
-    RedLEDs --> Flash[flash when corresponding bin is full]
+    STM32 -->|GPIO| RedLEDs[Red LEDs]
+    RedLEDs --> Flash[flash when bin full]
 
     STM32 -->|I2C| OLED[OLED screen]
     OLED --> Display[display waste examples]
 
-    Buttons[Push buttons (4)] -->|GPIO| STM32
-    STM32 --> Manual[manual lid open if bin not full]
+    Buttons[Push buttons] -->|GPIO| STM32
+    STM32 --> Manual[manual lid open]
 ```
 text
 
