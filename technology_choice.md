@@ -4,26 +4,36 @@ markdown
 ## The big picture
 
 ```mermaid
-flowchart TD
-    Resident[Resident] -->|voice command| Voice[SU-03T voice module]
-    Voice -->|UART| STM32[STM32 main controller]
+flowchart LR
+    subgraph Input["Input Modules"]
+        Voice[Voice Module SU-03T]
+        IR[Infrared Sensors]
+        Flame[Flame Sensor]
+        Buttons[Push Buttons]
+    end
 
-    IR[Infrared beam sensors] -->|GPIO| STM32
-    STM32 -->|PWM| Servo[Servo]
+    subgraph Control["Control Layer"]
+        STM32[STM32 Main Controller]
+    end
+
+    subgraph Output["Output Modules"]
+        Servo[Servo Motor]
+        Alarm[Buzzer + LED fire alarm]
+        LEDs[Red LEDs x4 bin full indication]
+        OLED[OLED Screen display waste examples]
+    end
+
+    Voice -->|UART| STM32
+    IR -->|GPIO| STM32
+    Flame -->|GPIO| STM32
+    Buttons -->|GPIO| STM32
+
+    STM32 -->|PWM| Servo
     Servo --> Lid[open/close lid]
 
-    Flame[Flame sensor] -->|GPIO| STM32
-    STM32 -->|GPIO| Alarm[Buzzer + High-power LED]
-    Alarm --> FireAlarm[local fire alarm]
-
-    STM32 -->|GPIO| RedLEDs[Red LEDs]
-    RedLEDs --> Flash[flash when bin full]
-
-    STM32 -->|I2C| OLED[OLED screen]
-    OLED --> Display[display waste examples]
-
-    Buttons[Push buttons] -->|GPIO| STM32
-    STM32 --> Manual[manual lid open]
+    STM32 -->|GPIO| Alarm
+    STM32 -->|GPIO| LEDs
+    STM32 -->|I2C| OLED
 ```
 text
 
