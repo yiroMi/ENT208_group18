@@ -3,19 +3,28 @@ markdown
 
 ## The big picture
 
-The Smart Waste Sorting Bin is an integrated embedded system:
-[Resident] → voice command → [SU-03T voice module] → (UART) → [STM32 main controller]
-↓
-[Infrared beam sensors] → (GPIO) → [STM32] → (PWM) → [Servo] → open/close lid
-↓
-[Flame sensor] → (GPIO) → [STM32] → (GPIO) → [Buzzer + High-power LED] → local fire alarm
-↓
-[Red LEDs (4)] ← (GPIO) ← [STM32] → flash when corresponding bin is full
-↓
-[OLED screen] ← (I2C) ← [STM32] → display waste examples
-↓
-[Push buttons (4)] → (GPIO) → [STM32] → manual lid open (if bin not full)
+```mermaid
+flowchart TD
+    Resident[Resident] -->|voice command| Voice[SU-03T voice module]
+    Voice -->|UART| STM32[STM32 main controller]
 
+    IR[Infrared beam sensors] -->|GPIO| STM32
+    STM32 -->|PWM| Servo[Servo]
+    Servo --> Lid[open/close lid]
+
+    Flame[Flame sensor] -->|GPIO| STM32
+    STM32 -->|GPIO| Alarm[Buzzer + High-power LED]
+    Alarm --> FireAlarm[local fire alarm]
+
+    STM32 -->|GPIO| RedLEDs[Red LEDs (4)]
+    RedLEDs --> Flash[flash when corresponding bin is full]
+
+    STM32 -->|I2C| OLED[OLED screen]
+    OLED --> Display[display waste examples]
+
+    Buttons[Push buttons (4)] -->|GPIO| STM32
+    STM32 --> Manual[manual lid open if bin not full]
+```
 text
 
 Everything runs **offline** — no cloud, no API, no Wi-Fi required. The bin listens, decides, and acts locally.
